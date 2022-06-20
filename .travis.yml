@@ -1,0 +1,88 @@
+env:
+  global:
+    # GITHUB_TOKEN
+    - secure: MKipgJu5QO90JFlrXH/Oag+Vo5islUzunBXBwo7B9gSAvpo27exKnGqHgxTTJ2tSSQsjFxYWGBpJfFDDEW9jqbhZ5dO4YjdOeqX1+D/QQVduxNH8/VfPMR3OlThQw/VVqCNOQgZE6Vb2Nsc6TSBfe9Qxx7VNjzruvJGbbeFeKsWpkrX/FXFLSC7L29GaLjXIxNDSZGpOMbkCONGms593M1FGTJ6ckbtZVHwcnTsVPQeWHbQPe0AkpwbAzbicPHiL+jyDtOAd+PCwaXtahBMU8OizO4YUUZT54mRM7z4Stm8/1OHMIyG2h1S+zzUxk4nRTWjErxIYqnva5zpW2fDicn0nXUf3aOBWtLTti3xhnVtCsYQjYbn3rn/nSu+HRlcPPlVcrW680cpmWG6o9k1aPU2zmJWwrf9NHM8jyJJTaMU3Nrpd4XQV0oCPK+ctP8W8HHsisTXawxeEDVy5KYtNhdNvFV6uqhLWVtaxYtYH/EOJ5Xg8yfdNwZcf5xmTkw8FAI3sCY/iqxRk7vLfuhbZ55vXs2UP1Va9xq11Xl7wZIR3mPEwoGWAlWd9tos7ZRhv+tnf6GCNZ+69PYjTwXvOfwFJz20AdeTJLnyozeJpXN02/JGBopAGzSJKhHDU1s/55Ipjqa13APW+9+HerOami/3PJWkfw1ku9RMwMzgB0zk=
+
+    # AWS_ACCESS_KEY_ID
+    - secure: neA1ScjJZ2y6c3GA3rrMZB1h71iFV8Ewb9eC5KcNnbgl5OAqWmU4TotnEwSFsCc6k8T8vQmQ+ls24LvraP5HupkkIZ1Mz8qgNQrrLIgZcUURFGWPZmBlmpc8cSYdHTuhox9uEhqk8eBswdg5vOPYmbqf4wPpLHdFarfva8BbyvAaVvfAzSZyflZURCD4VJXuvDqOZdtq41uZ+01I0MOmNBjnR6VKLIATKgb7rpibMFJ6oWfrYsQsKyCO1TEMFnZ/FdALy6Iq+oYn6ybWjsS9UI69TO3tAgHkPeIK0DR2/h83Xh0wdpdzNvT1EsU+pjGloVHOKRHS2nvYsVf1b5ZAhQbOkclh5pYVVT419iT2ym1JEoRpq1ge5p7jCizG1YyJFW80SgoKR1UkX0dHnydrHRkEEgD28hS3ICwdh8eysGahz9YlveLVUUPfGEcwPYHpJh7YIJgkKPDBbqnUSsZeTOZr4scNw1I17o/FjVLQ3Xqt9iHnRgPC3nsoT5ISf/63INIHDUo96n7A5YDJ3eELgqNWX0GttCRu0xrD1NPhSn372wQQ4XD7gOoU6oePpaFxR2jRtMzy7c4sE3Bu+QWYy3UyKkhefCO+3TQG6iYcOF01NTKUv7Ci8VKz1qwaEjgCVdhaYP8mPns5BYW30pQV+iFoZKX95rJoFNtY2ANwgvM=
+
+    # AWS_SECRET_ACCESS_KEY
+    - secure: o9JERG5agvqaDn8prVBjsUYjPIU4ysc3vdhb8exJdrmTdKEW2zbZDL0/ZuoAi+Pv47LnbaEkSnCjmpUOskMqX1gkSHH+g2jZW6e5fWZDQ5yPsPbBYI0CKXvAD8NiMp/aixs5zuqL5hOuwKSorZlSwmWPitxANKj4XmJPh2sxqK1LyCvAeYY8ZE2WEAGqy6c4FnE2+BigYa1R23/t0mvjJ51Jt5SgTKnY6RKfzvyAWAZpR1LmVNqUckX7CZ+DrW/iNrhmWDsP42scQ6Q8f9OX5v5QEvtJ3JAbY0Hwu4oA9HxFeO1L56+3VeliPeAWnVMQYfC0KXaYQ82p5pD+49/D8oKxXUAsIsEm1BvXaxgKPCh0e0qK4PuAxcGWN55eT+uvg2OKHkbCcQSjove2uGV5lSHsAmkZbqvcZejEtkjZWaW8FhX32c1EnIu2lW+QMFJfERpubuJhnkScmGCavMJtY8d7fn4lrxY6PkSVV6L+sVScUJ5J7jzLWn38+6XblZc9N4IU0QJEZVID8WLksbHkNc03FH8HzCE24m83+gLjsHdryZi7UEbBMu315Baqi4jEnDOXC1EXBTUT1aN55emmhNN6JItD9JkvXvacdZeAbthaf8BqoUQiiPiV9Yfz/vW3tnDLLXB10P45hGxzxc5CEwFVX4AjQZh9DJTGUYGlLTE=
+    
+    # GOOGLE_CAPTCHA_KEY
+    - secure: laQPvwNx/k5xrxCCr4ATcJxeKA5rrvdILm4pzfJR8FFgarXyQ88xqyG6g1XRuGtbzJbcMpX3cWTTdNg/AyrTHjupdnIXrA0akhaX1S5JgOvQqx0vT/xiD32xf+ip3fITd/QH74bM/0EE7ZVGnEoMgg0ofjnpn3fLupgD4qLt+XTUj8KDPW3gfXkqfTieATjlKLOsmIEMdIFdKbhIrYhF/hSqM1rHHoImIPl7Mc03NKTDKaqMvRPqlby8rNjalcm3FbYip+S6QHnKM1vWDQZXiq0ZJNn/WjwcHxfMAQoaLVwZMai+8Sz1zHl97i0G/aSLEAgVEJDyRc4dd5HBm0MOGd+DrciSH8JWTAY3bpiQw2JaQKbRRibZUBNkLh5QjdhRvJPkpyJByxeuaEEirPd07klmniwkQmO+3LbDirw8pjwfO2BVWpHGmmUi2TFsZgAcbEaNSdFs82+DnXnMWW1RCbidNE3thYaNzEGPgi1R5Px9prsJGS0MZvgrKdckax+EKBcuHmSnqRczv5h1x826DaU8pKPnzz1Fc6jycdEFB9hYE0gkkLjf6cPUTseKOMKCYhEVCUCKbfctwxOG6r/Wz0Cssm+3ETa5Ailhz8ojGiR4gbprYgwXTB50ZJkk4YL+5XHsfvhZY0aIv8Uq4HMipk6Ck9qlvcfG9GOulM1x6v8=
+
+    - AWS_REGION=us-east-1
+
+jobs:
+  include:
+    - stage: "Deploy Asset Infrastructure"
+      name: "sendEmail Bucket"
+      language: node_js
+      node_js: lts/*
+      cache: npm
+      before_install:
+        - cd infrastructure
+      install:
+        - npm install -g aws-cdk@1.81.0
+      script:
+        - cdk synth -c GOOGLE_CAPTCHA_KEY="$GOOGLE_CAPTCHA_KEY" -c COMMIT_MESSAGE="$COMMIT_MESSAGE"
+      deploy:
+        provider: cloudformation
+        access_key_id: "$AWS_ACCESS_KEY_ID"
+        secret_access_key: "$AWS_SECRET_ACCESS_KEY"
+        template: ./cdk.out/sendEmailBucket.template.json
+        stack_name: sendEmailBucket
+        region: "$AWS_REGION"
+        capabilities: CAPABILITY_NAMED_IAM
+        edge: true
+        on:
+          all_branches: true
+          condition: $TRAVIS_BRANCH =~ ^deploy(-sendEmail)?$
+
+    - stage: "Deploy Assets"
+      name: "sendEmail Code"
+      language: java
+      jdk: oraclejdk11
+      cache:
+        directories:
+          - $HOME/.m2
+      before_install:
+        - cd sendEmail
+      install:
+        - mvn clean install
+      before_deploy:
+        - cd target
+      deploy:
+        provider: s3
+        access_key_id: "$AWS_ACCESS_KEY_ID"
+        secret_access_key: "$AWS_SECRET_ACCESS_KEY"
+        bucket: send-email-assets
+        glob: sendEmail-jar-with-dependencies.jar
+        upload_dir: assets
+        storage_class: STANDARD_IA
+        edge: true
+        on:
+          all_branches: true
+          condition: $TRAVIS_BRANCH =~ ^deploy(-sendEmail)?$
+
+    - stage: "Deploy Application"
+      name: "Infrastructure"
+      language: node_js
+      node_js: lts/*
+      cache: npm
+      env:
+        - COMMIT_MESSAGE="$(git log -1 --oneline --no-decorate)"
+      before_install:
+        - cd infrastructure
+      install:
+        - npm install -g aws-cdk@1.81.0
+      script:
+        - cdk synth -c GOOGLE_CAPTCHA_KEY="$GOOGLE_CAPTCHA_KEY" -c COMMIT_MESSAGE="$COMMIT_MESSAGE"
+      deploy:
+          provider: script
+          script: cdk deploy --all --ci true --require-approval never -c GOOGLE_CAPTCHA_KEY="$GOOGLE_CAPTCHA_KEY" -c COMMIT_MESSAGE="$COMMIT_MESSAGE"
+          edge: true
+          on:
+            all_branches: true
+            condition: $TRAVIS_BRANCH =~ ^deploy(-(sendEmail|infrastructure))?$
