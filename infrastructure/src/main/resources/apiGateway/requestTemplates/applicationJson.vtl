@@ -1,0 +1,9 @@
+## See http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-mapping-template-reference.html
+
+#set($body = $input.path('$'))
+{
+    #foreach($key in $body.keySet())
+        "$key": "$util.escapeJavaScript($body.get($key))",
+    #end
+    "ipAddress": "$context.identity.sourceIp"
+}
