@@ -11,7 +11,7 @@
         <aws.lambda.core.version>1.2.1</aws.lambda.core.version>
         <aws.lambda.events.version>2.2.6</aws.lambda.events.version>
         <java.version>11</java.version>
-        <jackson.version>2.11.1</jackson.version>
+        <jackson.version>2.12.6.1</jackson.version>
         <lombok.version>1.18.12</lombok.version>
         <unirest.version>3.7.04</unirest.version>
     </properties>
