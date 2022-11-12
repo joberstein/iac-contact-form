@@ -34,9 +34,9 @@ before_install:
   - terraform validate
 
 install:
-  - cd lambda/sendEmail
-  - mvn clean install
-  - cd ../../
+  - (cd lambda/sendEmail && mvn clean install)
+
+script: 
   - terraform plan
 
   # include:

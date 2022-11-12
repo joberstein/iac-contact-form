@@ -92,7 +92,7 @@ Thumbs.db
 #########################
 ###  SendEmail Module ###
 #########################
-sendEmail/target/
+lambda/sendEmail/target/
 
 #########################
 # Infrastructure Module #
