@@ -1,4 +1,12 @@
 dist: jammy
+language: java
+jdk: openjdk11
+cache:
+  directories:
+    - $HOME/.m2
+addons:
+  apt:
+    update: true
 env:
   global:
     # GITHUB_TOKEN
@@ -15,75 +23,88 @@ env:
 
     - AWS_REGION=us-east-1
 
-jobs:
-  include:
-    - stage: "Deploy Asset Infrastructure"
-      name: "sendEmail Bucket"
-      language: node_js
-      node_js: lts/*
-      cache: npm
-      before_install:
-        - cd infrastructure
-      install:
-        - npm install -g aws-cdk@1.81.0
-      script:
-        - cdk synth -c GOOGLE_CAPTCHA_KEY="$GOOGLE_CAPTCHA_KEY" -c COMMIT_MESSAGE="$COMMIT_MESSAGE"
-      deploy:
-        provider: cloudformation
-        access_key_id: "$AWS_ACCESS_KEY_ID"
-        secret_access_key: "$AWS_SECRET_ACCESS_KEY"
-        template: ./cdk.out/sendEmailBucket.template.json
-        stack_name: sendEmailBucket
-        region: "$AWS_REGION"
-        capabilities: CAPABILITY_NAMED_IAM
-        edge: true
-        on:
-          all_branches: true
-          condition: $TRAVIS_BRANCH =~ ^deploy(-sendEmail)?$
+if: branch != tag
 
-    - stage: "Deploy Assets"
-      name: "sendEmail Code"
-      language: java
-      jdk: openjdk11
-      cache:
-        directories:
-          - $HOME/.m2
-      before_install:
-        - cd sendEmail
-      install:
-        - mvn clean install
-      before_deploy:
-        - cd target
-      deploy:
-        provider: s3
-        access_key_id: "$AWS_ACCESS_KEY_ID"
-        secret_access_key: "$AWS_SECRET_ACCESS_KEY"
-        bucket: send-email-assets
-        glob: sendEmail-jar-with-dependencies.jar
-        upload_dir: assets
-        storage_class: STANDARD_IA
-        edge: true
-        on:
-          all_branches: true
-          condition: $TRAVIS_BRANCH =~ ^deploy(-sendEmail)?$
+before_install: 
+  - curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
+  - sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+  - sudo apt-get update
+  - sudo apt-get install terraform
+  
+install:
+  - cd lambda/sendEmail
+  - mvn clean install
+  - cd ../../
+  - terraform plan
 
-    - stage: "Deploy Application"
-      name: "Infrastructure"
-      language: node_js
-      node_js: lts/*
-      cache: npm
-      env:
-        - COMMIT_MESSAGE="$(git log -1 --oneline --no-decorate)"
-      before_install:
-        - cd infrastructure
-      install:
-        - npm install -g aws-cdk@1.81.0
-      script:
-        - cdk synth -c GOOGLE_CAPTCHA_KEY="$GOOGLE_CAPTCHA_KEY" -c COMMIT_MESSAGE="$COMMIT_MESSAGE"
-      deploy:
-          provider: script
-          script: cdk deploy --all --ci true --require-approval never -c GOOGLE_CAPTCHA_KEY="$GOOGLE_CAPTCHA_KEY" -c COMMIT_MESSAGE="$COMMIT_MESSAGE"
-          edge: true
-          on:
-            all_branches: true
-            condition: $TRAVIS_BRANCH =~ ^deploy(-(sendEmail|infrastructure))?$
+  # include:
+  #   - stage: "Deploy Asset Infrastructure"
+  #     name: "sendEmail Bucket"
+  #     language: node_js
+  #     node_js: lts/*
+  #     cache: npm
+  #     before_install:
+  #       - cd infrastructure
+  #     install:
+  #       - npm install -g aws-cdk@1.81.0
+  #     script:
+  #       - cdk synth -c GOOGLE_CAPTCHA_KEY="$GOOGLE_CAPTCHA_KEY" -c COMMIT_MESSAGE="$COMMIT_MESSAGE"
+  #     deploy:
+  #       provider: cloudformation
+  #       access_key_id: "$AWS_ACCESS_KEY_ID"
+  #       secret_access_key: "$AWS_SECRET_ACCESS_KEY"
+  #       template: ./cdk.out/sendEmailBucket.template.json
+  #       stack_name: sendEmailBucket
+  #       region: "$AWS_REGION"
+  #       capabilities: CAPABILITY_NAMED_IAM
+  #       edge: true
+  #       on:
+  #         all_branches: true
+  #         condition: $TRAVIS_BRANCH =~ ^deploy(-sendEmail)?$
+
+    # - stage: "Deploy Assets"
+    #   name: "sendEmail Code"
+    #   language: java
+    #   jdk: openjdk11
+    #   cache:
+    #     directories:
+    #       - $HOME/.m2
+    #   before_install:
+    #     - cd sendEmail
+    #   install:
+    #     - mvn clean install
+    #   before_deploy:
+    #     - cd target
+    #   deploy:
+    #     provider: s3
+    #     access_key_id: "$AWS_ACCESS_KEY_ID"
+    #     secret_access_key: "$AWS_SECRET_ACCESS_KEY"
+    #     bucket: send-email-assets
+    #     glob: sendEmail-jar-with-dependencies.jar
+    #     upload_dir: assets
+    #     storage_class: STANDARD_IA
+    #     edge: true
+    #     on:
+    #       all_branches: true
+    #       condition: $TRAVIS_BRANCH =~ ^deploy(-sendEmail)?$
+
+    # - stage: "Deploy Application"
+    #   name: "Infrastructure"
+    #   language: node_js
+    #   node_js: lts/*
+    #   cache: npm
+    #   env:
+    #     - COMMIT_MESSAGE="$(git log -1 --oneline --no-decorate)"
+    #   before_install:
+    #     - cd infrastructure
+    #   install:
+    #     - npm install -g aws-cdk@1.81.0
+    #   script:
+    #     - cdk synth -c GOOGLE_CAPTCHA_KEY="$GOOGLE_CAPTCHA_KEY" -c COMMIT_MESSAGE="$COMMIT_MESSAGE"
+    #   deploy:
+    #       provider: script
+    #       script: cdk deploy --all --ci true --require-approval never -c GOOGLE_CAPTCHA_KEY="$GOOGLE_CAPTCHA_KEY" -c COMMIT_MESSAGE="$COMMIT_MESSAGE"
+    #       edge: true
+    #       on:
+    #         all_branches: true
+    #         condition: $TRAVIS_BRANCH =~ ^deploy(-(sendEmail|infrastructure))?$
