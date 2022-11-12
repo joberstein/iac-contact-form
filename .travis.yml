@@ -4,6 +4,7 @@ jdk: openjdk11
 cache:
   directories:
     - $HOME/.m2
+    - $HOME/.cache/pre-commit
 addons:
   apt:
     update: true
@@ -26,17 +27,24 @@ env:
 if: branch != tag
 
 before_install: 
+  # Install Terraform
   - curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
   - sudo apt-add-repository -y "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
   - sudo apt-get -y update
   - sudo apt-get -y install terraform
+  
+  # Install pre-commit
+  - pip install pre-commit
+  - pre-commit install
+
   - terraform init
   - terraform validate
 
 install:
   - (cd lambda/sendEmail && mvn clean install)
 
-script: 
+script:
+  - pre-commit run --hook-stage manual commitlint-travis
   - terraform plan
 
   # include:
