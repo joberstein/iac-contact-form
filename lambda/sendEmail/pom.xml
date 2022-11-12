@@ -9,7 +9,7 @@
         <apache.commons.version>3.1</apache.commons.version>
         <aws.ses.version>1.11.827</aws.ses.version>
         <aws.lambda.core.version>1.2.2</aws.lambda.core.version>
-        <aws.lambda.events.version>2.2.6</aws.lambda.events.version>
+        <aws.lambda.events.version>3.11.0</aws.lambda.events.version>
         <java.version>11</java.version>
         <jackson-core.version>2.11.1</jackson-core.version>
         <jackson-databind.version>2.11.1</jackson-databind.version>
