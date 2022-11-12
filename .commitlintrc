@@ -6,7 +6,7 @@
             "aws-ses",
             "ci",
             "deps",
-            "sendEmail"
+            "send-email"
         ]]
     }
 }
