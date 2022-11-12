@@ -11,7 +11,8 @@
         <aws.lambda.core.version>1.2.1</aws.lambda.core.version>
         <aws.lambda.events.version>2.2.6</aws.lambda.events.version>
         <java.version>11</java.version>
-        <jackson.version>2.11.1</jackson.version>
+        <jackson-core.version>2.11.1</jackson-core.version>
+        <jackson-databind.version>2.11.1</jackson-databind.version>
         <lombok.version>1.18.12</lombok.version>
         <unirest.version>3.7.04</unirest.version>
     </properties>
@@ -35,12 +36,12 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
-            <version>${jackson.version}</version>
+            <version>${jackson-core.version}</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>${jackson.version}</version>
+            <version>${jackson-databind.version}</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>

@@ -1,0 +1,10 @@
+version: 2
+updates:
+  - package-ecosystem: maven
+    directory: "/lambda/sendEmail"
+    schedule:
+      interval: daily
+    commit-message:
+      prefix: fix
+      prefix-development: chore
+      include: scope
