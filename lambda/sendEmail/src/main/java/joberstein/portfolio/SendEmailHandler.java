@@ -24,8 +24,6 @@ import static com.amazonaws.services.lambda.runtime.events.APIGatewayProxyReques
 
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
 public class SendEmailHandler implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
-    private final static String SOURCE_EMAIL = "portfolio@jesseoberstein.com";
-    private final static String DESTINATION_EMAIL = "joberstein12@gmail.com";
     private final static String MESSAGE_HTML_TEMPLATE = 
         "<html>" +
             "<body>" +
@@ -115,7 +113,12 @@ public class SendEmailHandler implements RequestHandler<APIGatewayProxyRequestEv
     private SendEmailResult sendEmail(ContactRequest contactRequest, LambdaLogger logger) {
         try {
             AmazonSimpleEmailService ses = config.getSimpleEmailService();
-            var emailRequest = contactRequest.toSendEmailRequest(SOURCE_EMAIL, DESTINATION_EMAIL, MESSAGE_HTML_TEMPLATE);
+            var emailRequest = contactRequest.toSendEmailRequest(
+                System.getenv("SOURCE_EMAIL"), 
+                System.getenv("DESTINATION_EMAIL"), 
+                MESSAGE_HTML_TEMPLATE
+            );
+
             return ses.sendEmail(emailRequest);
         } catch (Exception e) {
             logger.log(e.getMessage());
