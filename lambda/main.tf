@@ -5,7 +5,7 @@ locals {
 
 data "archive_file" "send_email_lambda_zip" {
   type        = "zip"
-  source_file = "${local.build_path}/${local.artifact_name}.jar"
+  source_file = "${local.build_path}/${local.artifact_name}-jar-with-dependencies.jar"
   output_path = "${local.build_path}/${local.artifact_name}.zip"
 }
 
