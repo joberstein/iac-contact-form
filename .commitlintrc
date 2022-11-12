@@ -1,0 +1,12 @@
+{
+    "extends": [ "@joberstein12" ],
+    "rules": {
+        "scope-enum": [2, "always", [
+            "aws-api",
+            "aws-ses",
+            "ci",
+            "deps",
+            "sendEmail"
+        ]]
+    }
+}
