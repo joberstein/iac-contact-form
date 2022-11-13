@@ -46,6 +46,7 @@ install:
 script:
   - pre-commit run --hook-stage manual commitlint-travis
   - terraform workspace new dev
+  - terraform workspace select dev
   - terraform plan -var-file $(terraform workspace show).tfvars
 
   # include:
