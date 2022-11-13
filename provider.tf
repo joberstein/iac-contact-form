@@ -12,10 +12,11 @@ terraform {
 provider "aws" {
   default_tags {
     tags = {
-      source = "Terraform"
-      repo = "iac-contact-form"
-      owner = "joberstein"
+      source      = "Terraform"
+      repo        = "iac-contact-form"
+      owner       = "joberstein"
       environment = var.environment
+      managed     = true
     }
   }
 }

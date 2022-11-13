@@ -45,7 +45,8 @@ install:
 
 script:
   - pre-commit run --hook-stage manual commitlint-travis
-  - terraform plan
+  - ./scripts/switch-workspace.sh dev
+  - terraform plan -var-file $(terraform workspace show).tfvars
 
   # include:
   #   - stage: "Deploy Asset Infrastructure"
