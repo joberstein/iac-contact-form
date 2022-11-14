@@ -47,9 +47,10 @@ before_script:
   - ./scripts/switch-workspace.sh dev
 
 script:
-  - terraform apply -var-file=$(terraform workspace show).tfvars -auto-approve
+  - terraform plan -var-file=$(terraform workspace show).tfvars
 
 before_deploy:
+  - terraform apply -var-file=$(terraform workspace show).tfvars -auto-approve
   - ./scripts/switch-workspace.sh prod
 
 deploy:
