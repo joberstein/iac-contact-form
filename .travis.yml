@@ -39,17 +39,18 @@ before_install:
   - sudo apt-get -y install terraform
 
 install:
+  - (cd lambda/sendEmail && mvn clean install)
   - terraform init
   - terraform validate
-  - (cd lambda/sendEmail && mvn clean install)
 
 before_script: 
   - ./scripts/switch-workspace.sh dev
 
 script:
-  - terraform apply -var-file=$(terraform workspace show).tfvars -auto-approve
+  - terraform plan -var-file=$(terraform workspace show).tfvars
 
 before_deploy:
+  - terraform apply -var-file=$(terraform workspace show).tfvars -auto-approve
   - ./scripts/switch-workspace.sh prod
 
 deploy:
