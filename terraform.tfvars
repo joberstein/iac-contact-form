@@ -1,1 +1,0 @@
-google_captcha_key = "override_me"
