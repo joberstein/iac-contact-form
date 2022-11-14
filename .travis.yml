@@ -39,9 +39,9 @@ before_install:
   - sudo apt-get -y install terraform
 
 install:
+  - (cd lambda/sendEmail && mvn clean install)
   - terraform init
   - terraform validate
-  - (cd lambda/sendEmail && mvn clean install)
 
 before_script: 
   - ./scripts/switch-workspace.sh dev
