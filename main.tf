@@ -17,3 +17,10 @@ module "lambda" {
   source_email        = "${var.source_email_username}@${var.source_email_domain}"
   destination_email   = var.destination_email
 }
+
+module "api_gateway" {
+  source                 = "./api-gateway"
+  environment            = var.environment
+  send_email_lambda_arn  = module.lambda.send_email.arn
+  send_email_lambda_name = module.lambda.send_email.function_name
+}
