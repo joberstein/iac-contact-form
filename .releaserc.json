@@ -6,8 +6,8 @@
         [
             "@semantic-release/exec", 
             {
-                "verifyConditionsCmd": "terraform plan -var-file=$(terraform workspace show).tfvars -var GOOGLE_CAPTCHA_KEY=$GOOGLE_CAPTCHA_KEY",
-                "publishCmd": "terraform apply -var-file=$(terraform workspace show).tfvars -var GOOGLE_CAPTCHA_KEY=$GOOGLE_CAPTCHA_KEY -auto-approve"
+                "verifyConditionsCmd": "terraform plan -var-file=$(terraform workspace show).tfvars -var google_captcha_key=$GOOGLE_CAPTCHA_KEY",
+                "publishCmd": "terraform apply -var-file=$(terraform workspace show).tfvars -var google_captcha_key=$GOOGLE_CAPTCHA_KEY -auto-approve"
             }
         ]
     ]
