@@ -1,5 +1,5 @@
 environment           = "dev"
 destination_email     = "joberstein12+dev@gmail.com"
-google_captcha_key    = "override_me"
-source_email_domain   = "localhost"
-source_email_username = "test"
+google_captcha_key    = "6LeLGAUjAAAAANa4qvnABxhaj1xvP4a1eS_wNmx6"
+source_email_username = "joberstein12+dev"
+source_email_domain   = "gmail.com"

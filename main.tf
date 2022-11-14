@@ -7,6 +7,7 @@ module "ses" {
   source              = "./ses"
   source_email_domain = var.source_email_domain
   destination_email   = var.destination_email
+  environment         = var.environment
 }
 
 module "lambda" {
