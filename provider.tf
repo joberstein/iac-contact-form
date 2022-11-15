@@ -14,7 +14,7 @@ provider "aws" {
     tags = {
       source      = "Terraform"
       repo        = "iac-contact-form"
-      owner       = "joberstein"
+      owner       = var.owner
       environment = var.environment
       managed     = true
     }

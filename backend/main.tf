@@ -1,14 +1,3 @@
-provider "aws" {
-  default_tags {
-    tags = {
-      source  = "Terraform"
-      repo    = var.app_name
-      owner   = var.owner
-      managed = false
-    }
-  }
-}
-
 resource "aws_s3_bucket" "terraform_state" {
   bucket = "${var.app_name}-state"
 }
