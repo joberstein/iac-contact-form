@@ -113,11 +113,11 @@ N/A
 
 | attribute | type | description | required |
 | --- | --- | --- | --- |
-| body | string | The body of the email message to send | false |
+| body | string | The body of the email message to send | true |
 | captcha | string | The client-side reCAPTCHA v3 value | true |
 | from | string | The sender's name | false |
 | replyToAddress | string | The sender's email address | true |
-| subject | string | The subject of the email message to send | false |
+| subject | string | The subject of the email message to send | true |
 
 **ContactResponse**
 | attribute | type | description |
