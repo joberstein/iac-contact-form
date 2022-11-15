@@ -16,6 +16,7 @@ variable "environment" {
 variable "google_captcha_key" {
   type      = string
   sensitive = true
+  description = "A Google reCAPTCHA v3 server key (private) that is valid for the source_email_domain."
 }
 
 variable "source_email_domain" {
@@ -26,4 +27,9 @@ variable "source_email_domain" {
 variable "source_email_username" {
   type        = string
   description = "The username of the email address that SES will send emails from."
+}
+
+variable "owner" {
+  type        = string
+  description = "The username/name of the person who owns the AWS resources."
 }
