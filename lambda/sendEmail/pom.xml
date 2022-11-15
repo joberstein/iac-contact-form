@@ -6,7 +6,7 @@
     <artifactId>sendEmail</artifactId>
     <version>1.0-SNAPSHOT</version>
     <properties>
-        <apache.commons.version>3.12.0</apache.commons.version>
+        <apache.commons-text.version>1.10.0</apache.commons-text.version>
         <aws.ses.version>1.12.341</aws.ses.version>
         <aws.lambda.core.version>1.2.2</aws.lambda.core.version>
         <aws.lambda.events.version>3.11.0</aws.lambda.events.version>
@@ -54,8 +54,8 @@
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>${apache.commons.version}</version>
+            <artifactId>commons-text</artifactId>
+            <version>${apache.commons-text.version}</version>
         </dependency>
         <dependency>
             <groupId>com.konghq</groupId>
