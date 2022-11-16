@@ -88,8 +88,8 @@ public class SendEmailHandlerTest {
 
         assertEquals(400, response.getStatusCode().intValue());
         verify(logger).log(anyString());
-        verifyZeroInteractions(captchaVerificationService);
-        verifyZeroInteractions(ses);
+        verifyNoInteractions(captchaVerificationService);
+        verifyNoInteractions(ses);
     }
 
     @Test
@@ -101,9 +101,9 @@ public class SendEmailHandlerTest {
         var response = application.handleRequest(request, context);
 
         assertEquals(403, response.getStatusCode().intValue());
-        verifyZeroInteractions(logger);
+        verifyNoInteractions(logger);
         verify(captchaVerificationService).verify(any(VerifyCaptchaRequest.class));
-        verifyZeroInteractions(ses);
+        verifyNoInteractions(ses);
     }
 
     @Test
@@ -114,7 +114,7 @@ public class SendEmailHandlerTest {
 
         assertEquals(200, response.getStatusCode().intValue());
         assertEquals(MESSAGE_ID, contactResponse.getResultId());
-        verifyZeroInteractions(logger);
+        verifyNoInteractions(logger);
         verify(captchaVerificationService).verify(any(VerifyCaptchaRequest.class));
         verify(ses).sendEmail(any(SendEmailRequest.class));
     }
