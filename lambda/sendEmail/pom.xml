@@ -14,7 +14,7 @@
         <jackson-core.version>2.14.0</jackson-core.version>
         <jackson-databind.version>2.14.0</jackson-databind.version>
         <lombok.version>1.18.24</lombok.version>
-        <unirest.version>3.13.12</unirest.version>
+        <unirest.version>3.13.13</unirest.version>
 
         <!-- Allows for reproducible builds -->
         <project.build.outputTimestamp>10</project.build.outputTimestamp>
