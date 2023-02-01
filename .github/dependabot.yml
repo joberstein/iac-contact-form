@@ -10,5 +10,5 @@ updates:
       include: scope
     ignore:
       - dependency-name: com.amazonaws:aws-java-sdk-ses
-      - update-types:
-        - version-update:semver-patch
+        update-types:
+          - version-update:semver-patch
