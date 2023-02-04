@@ -69,7 +69,7 @@ jobs:
             ]
           dry_run: ${{ github.ref_name != 'master' }}
           extra_plugins: |
-            @qiwi/semantic-release-gh-pages-plugin
+            @semantic-release/exec
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GOOGLE_CAPTCHA_KEY: ${{ secrets.GOOGLE_CAPTCHA_KEY }}
