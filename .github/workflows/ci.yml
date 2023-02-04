@@ -49,17 +49,18 @@ jobs:
       - name: Switch Workspace (Development)
         run: ./scripts/switch-workspace.sh dev
 
-      - name: Plan Infrastructure (Dry-Run)
+      - name: Build Infrastructure (Dry-Run)
         run: terraform plan -var-file=$(terraform workspace show).tfvars
 
-      - name: Build Infrastructure (Development)
+      - name: Deploy Infrastructure (Development)
+        if: github.ref_name == 'master'
         run: terraform apply -var-file=$(terraform workspace show).tfvars -auto-approve
-      
+  
       - name: Switch Workspace (Production)
-        if: ${{ github.ref_name == 'master' }}
+        if: github.ref_name == 'master'
         run: ./scripts/switch-workspace.sh prod
 
-      - name: Deploy Infrastructure
+      - name: Deploy Infrastructure (Production)
         uses: cycjimmy/semantic-release-action@v3
         with:
           branches: |
