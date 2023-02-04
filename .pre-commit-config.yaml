@@ -21,16 +21,3 @@ repos:
             - commit-msg
           additional_dependencies:
             - '@joberstein12/commitlint-config'
-        - id: commitlint-travis
-          stages:
-            - manual
-          additional_dependencies:
-            - '@joberstein12/commitlint-config'
-  - repo: https://github.com/joberstein/precommit-semantic-release
-    rev: v1.0.1
-    hooks:
-        - id: semantic-release 
-          stages:
-            - manual
-          additional_dependencies:
-            - '@semantic-release/exec'

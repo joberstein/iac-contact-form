@@ -1,0 +1,74 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches:
+      - '**'
+  pull_request:
+
+env:
+  AWS_REGION: us-east-1
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+jobs:
+  ci_pipeline:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout Git Repository
+        uses: actions/checkout@v3
+        with: 
+          fetch-depth: 0
+      
+      - name: Install Commitlint Config
+        run: yarn add -D @joberstein12/commitlint-config
+      
+      - name: Validate Commits
+        uses: wagoid/commitlint-github-action@v5
+        with:
+          configFile: '.commitlintrc.json'
+        env:
+          NODE_PATH: ${{ github.workspace }}/node_modules
+
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: 17
+          distribution: temurin
+          cache: maven
+
+      - name: Build Lambda (sendEmail)
+        run: (cd lambda/sendEmail && mvn clean install)
+
+      - name: Initialize Infrastructure
+        run: terraform init
+
+      - name: Validate Infrastructure
+        run: terraform validate
+
+      - name: Switch Workspace (Development)
+        run: ./scripts/switch-workspace.sh dev
+
+      - name: Build Infrastructure (Dry-Run)
+        run: terraform plan -var-file=$(terraform workspace show).tfvars
+
+      - name: Deploy Infrastructure (Development)
+        if: github.ref_name == 'master'
+        run: terraform apply -var-file=$(terraform workspace show).tfvars -auto-approve
+  
+      - name: Switch Workspace (Production)
+        run: ./scripts/switch-workspace.sh prod
+
+      - name: Deploy Infrastructure (Production)
+        uses: cycjimmy/semantic-release-action@v3
+        with:
+          branches: |
+            [ 
+              '${{ github.ref_name	}}'
+            ]
+          dry_run: ${{ github.ref_name != 'master' }}
+          extra_plugins: |
+            @semantic-release/exec
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GOOGLE_CAPTCHA_KEY: ${{ secrets.GOOGLE_CAPTCHA_KEY }}
