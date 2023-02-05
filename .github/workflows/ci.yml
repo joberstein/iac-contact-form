@@ -10,6 +10,7 @@ env:
   AWS_REGION: us-east-1
   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  IS_MASTER: ${{ github.ref_name == 'master' }}
 
 jobs:
   ci_pipeline:
@@ -53,22 +54,19 @@ jobs:
         run: terraform plan -var-file=$(terraform workspace show).tfvars
 
       - name: Deploy Infrastructure (Development)
-        if: github.ref_name == 'master'
+        if: env.IS_MASTER
         run: terraform apply -var-file=$(terraform workspace show).tfvars -auto-approve
   
       - name: Switch Workspace (Production)
+        if: env.IS_MASTER
         run: ./scripts/switch-workspace.sh prod
 
       - name: Deploy Infrastructure (Production)
         uses: cycjimmy/semantic-release-action@v3
-        with:
-          branches: |
-            [ 
-              '${{ github.ref_name	}}'
-            ]
-          dry_run: ${{ github.ref_name != 'master' }}
-          extra_plugins: |
-            @semantic-release/exec
+        if: env.IS_MASTER
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GOOGLE_CAPTCHA_KEY: ${{ secrets.GOOGLE_CAPTCHA_KEY }}
+        with:
+          extra_plugins: |
+            @semantic-release/exec
